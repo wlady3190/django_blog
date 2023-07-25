@@ -134,3 +134,18 @@ Agregando nueva info desde un json
    1. views -> en PostView, agregar paginate_by = 2 (# de elementos/pag)
    2. in home.html agregar el codigo de paginacion
 
+   Mostrar posts por autor
+
+   1. views -> crear class UserPostListView(ListView):
+   2. override get_query_Set
+   3. importar get_object_or_404
+   4. importar from django.contrib.auth.models import User
+   5. generar el return
+   6. en url.py importar UserPostListView -> user/<str:username>
+   7. crear plantilla user_posts.html
+   8. Add <h1>Posts by {{ view.kwargs.username }}</h1> + ...
+   9. completar href de author en user_posts.html y en home-html y en post-detail cambiar de posts a object
+
+
+
+

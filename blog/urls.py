@@ -4,7 +4,8 @@ from .views import (PostListView,
                     PostDetailView, 
                     PostCreateView, 
                     PostUpdateView,
-                    PostDeleteView)
+                    PostDeleteView,
+                    UserPostListView)
 
 from . import views
 
@@ -13,6 +14,9 @@ urlpatterns =[
     # path('', views.home, name='blog-home'),
     #Modificar Post
     path('', PostListView.as_view(), name='blog-home'),
+    #importando path de filtar por usuario
+    path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
+    
     # creando ruta de PostDetailVIew
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     #Creando PostCreateVIew
