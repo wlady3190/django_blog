@@ -146,6 +146,43 @@ Agregando nueva info desde un json
    8. Add <h1>Posts by {{ view.kwargs.username }}</h1> + ...
    9. completar href de author en user_posts.html y en home-html y en post-detail cambiar de posts a object
 
+   Resetear mail y pass
+   1. projects -> url -> path('password-reset/')
+   2. users -> crear password_reset.html
+   3. projects -> url -> path password-reset/done
+   4. users -> crear password-reset_done.html
+   5. Project -> url -> path('password-reset-confirm/<uid64>/<token>/)
+   6. users -> password_reset_confirm.html
+
+   ir app password sign in -> para que acepte mail de rutas no seguras
+   1. project -> settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True , etc
+
+ ver video environment variables
+
+nano .bash_profile
+export BD_USER="user"
+export DB_PASS="password"
+
+para acceder desde python
+os.environ.get('DB_USER')
+
+crear confirmacion de cambio de pass
+
+1. Project -> url ->  password-reset-complete/
+
+
+
+
+
+
+
 
 
 
