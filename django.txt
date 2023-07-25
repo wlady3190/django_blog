@@ -1,0 +1,136 @@
+1. python-manager startproject my_project
+2. Dentro del proyecto python3 manage.py startapp blog
+3. en views from django.http import HttpResponse
+
+Para que la main reconozca las templates, en settings se agrega
+'blog.apps.BlogConfig', que está en apps
+
+Crear admin
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+
+
+
+al crear una fecha
+models.DateTimeField(default=timezone.now) no usar parentesis, crea la fecha una sola vez.
+
+# solo cuando el objeto es creado, se genera la fecha auto_now_add=True
+    
+# para autentificacion, y relacion de uno a varios
+from django.contrib.auth.models import User
+
+author = models.ForeignKey(User, on_delete=models.CASCADE) => si se borra el autor, se borra todo lo relacionado, si se borra una publcacion, no se borra el autor
+
+ver el SQL de la tabla creada
+
+python3 manage.py sqlmigrate blog 0001
+
+en la shell
+con la BDD
+from blog.models import Post
+from django.contrib.auth.models import User
+
+
+crear un nuevo registro
+user corresponde al objeto creado en user
+user.post_set.create(title = 'Blog 3', content = 'Third Post content')
+
+post_2 = Post(title = 'Blog 2', content = 'second post content', author_id = user.id)
+
+FORMULARIOS
+Usar Crispy Forms: pip install django-crispy-forms
+
+se añade en setting en INSTALLED_APPS = ['crispy_forms']
+ y al final CRYSPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+
+ Para importar imagenes
+
+1. Users => Models, crear clase
+2. pip install Pillow  - importa img a python
+3. make makemigrations, migrate
+4. Users => Admin->registrar Profile
+5. settings ==> media_root y media_url
+6. cambiar ruta en HTML ->  profile y load crispy
+
+Crear Signals
+ 1. crear signals.py 
+2. En Users => apps.py se crea ready
+
+Modificando datos de perfil
+1. forms.py => UserUpdateFOrm
+2. views.py => UserUpdateForm, ProfileUpdateForm, añadir context en render, en views añadir  el context
+3. añadir nuevo contenido form a profile.html, enctype="multipart/form-data" 
+
+Ajustar tamaño de imagenes
+1. sobreescribir en users -> models def (save)
+
+Colocar imagen de perfil en publicación->home
+
+Modificar posts 
+1. blogs -> views _> impor listViews
+2. Crear class
+3. Url => cambiar path
+4. views.py -> template_name = 'blog -> modificar model, template y context
+5. ORDENAR DE RECIENTE AL ANTIGUO
+6: Crear clases POstListView ->ordernar con ordering 
+7. Importar DetaiView
+
+Cambiando a clase generica
+1. import DetailView en views en Posts
+2. import Posdetailview en url -> blog
+3. crear ruta para postDetailView
+4. con la ruta creada, crear plantilla post es ahora object
+5. verificar con http://127.0.0.1:8000/post/1 
+5. en home, cambiar la url href="{% url 'post-detail' post.id %} del titulo del post
+
+Creación de posts
+1. Blog -> views-> import createview -> class PostcreateView(CreateView)
+2. importar en URL la función 
+3. copiar template de register
+4. con [title, content] se crean los camppos del form
+5. override de form_valid en la clase
+6. En models, crear reverse function para el redirect y funcion get_absolute_url
+
+Para Clases no es necesrio el decorator autenicacion
+7. views -> import LoginRequiredMixin y se añade a CreateView, evita que se cree post sin login y envia a Login
+
+ACTUALIZAR
+1. Añadir UpdateView y class PostUpdateView
+2. En Url, importan PostUpdateView y añadir ruta post/<int:pk>/update/
+3. No es necesrio crear un template
+Para evitar que otros logueados editen diferentes posts oJO 
+4. views -> Import UserPassesTestMixin ys e añade:
+PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+ 5. crear def test_func(self):
+
+ BORRAR
+ 1. views importar DeleteView
+ 2. class class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+3. url -import PostDeleteViewy crear path path('post/<int:pk>/delete/)
+4. crear plantilla port_confirm_delete, copiar de post_form, agregar boton, ruta y cancel con redirección a la vista del blog
+
+ CREAR RUTA PARA NUEVO Post
+1. añadir ruta en navbar del base.HTML
+
+Añadir boto de update
+1. En post_detail se agrega el botón  Update y Delete cuando el user esta login
+
+Agregando nueva info desde un json
+
+1. colocar json en la raiz
+2. import json 
+3. from blog.models import Post
+4. with open ('posts.json') as f: (dar enter y luego)
+   ...:     posts_json = json.load(f)
+5. for post in posts_json:
+   ...:     post = Post(title = post['title'], content = post['content'], author_id = post['user_id'])
+   ...:     post.save()
+
+   PAGINACION (para q apareza ciertos post por pagina)
+   1. views -> en PostView, agregar paginate_by = 2 (# de elementos/pag)
+   2. in home.html agregar el codigo de paginacion
+

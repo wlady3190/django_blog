@@ -1,0 +1,155 @@
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.card {
+  background-color: #f7f7f7 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-title {
+  font-size: 20px !important;
+  color: #333 !important;
+  margin-bottom: 10px !important;
+}
+
+.card-subtitle {
+  font-size: 14px !important;
+  color: #777 !important; 
+  margin-bottom: 5px !important;
+}
+
+.card-text {
+  font-size: 16px !important;
+  color: #555 !important;
+}
+
+/* Estilos para el contenedor del artículo */
+.media.content-section {
+  display: flex;
+  margin-bottom: 20px !important;
+}
+
+/* Estilos para la imagen del autor */
+.author-image {
+  width: 50px;
+  height: 50px;
+}
+
+/* Estilos para la sección del autor */
+.media-body {
+  flex: 1;
+  margin-left: 10px;
+}
+
+/* Estilos para el nombre del autor */
+.author-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Estilos para la fecha de publicación */
+.date-posted {
+  color: #999;
+}
+
+/* Estilos para el título del artículo */
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Estilos para el contenido del artículo */
+.article-content {
+  font-size: 16px;
+  line-height: 1.6;
+}

@@ -1,0 +1,28 @@
+{%extends 'blog/base.html'%} 
+
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+<div class="content-section">
+  <form method="post">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Log in</legend>
+      <!-- {{form.as_p}} se cambia debido a crispy forms-->
+      {{form|crispy}}
+      
+    </fieldset>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-info">Login</button>
+    </div>
+  </form>
+
+  <div class="border-top p-3">
+    <small class="text-muted">Need an account? <a class="ml-2" href="{%  url 'register'%}">Sign Up Now </a> </small>
+  </div>
+</div>
+
+{% endblock content%}
+
+<!-- Por defecto, envia a http://127.0.0.1:8000/accounts/profile/ cambiar en settings  LOGIN_REDIRECT_URL = 'blog-home' -->
